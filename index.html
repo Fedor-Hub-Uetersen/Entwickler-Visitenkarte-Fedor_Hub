@@ -265,21 +265,3 @@
     <!-- --- СКРИПТЫ (JavaScript) --- -->
     <script>
         // Открытие окон
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = 'flex';
-        }
-
-        // Закрытие окон через крестик
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-
-        // Закрытие окон при клике на темную область вокруг окна
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal')) {
-                event.target.style.display = 'none';
-            }
-        }
-    </script>
-</body>
-</html>
