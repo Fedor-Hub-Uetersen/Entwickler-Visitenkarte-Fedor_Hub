@@ -20,59 +20,56 @@
             background-color: #0f172a;
             color: #f8fafc;
             line-height: 1.6;
-            padding-top: 150px; /* Добавляем отступ сверху, чтобы шапка не перекрывала контент */
+            padding-top: 180px; /* Базовый отступ для ПК */
         }
         
-        /* Профессиональная Grid-шапка для идеального центрирования */
+        /* Профессиональная Grid-шапка для ПК */
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: rgba(15, 23, 42, 0.9);
+            background-color: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(10px);
             padding: 15px 40px;
             display: grid;
-            grid-template-columns: 1fr auto 1fr; /* Три равные колонки */
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
             justify-items: center;
             z-index: 100;
             border-bottom: 1px solid #1e293b;
+            transition: all 0.3s ease;
         }
         
-        /* Левая часть: Имя */
         .logo-text {
             font-size: 24px;
             font-weight: bold;
             color: #38bdf8;
-            justify-self: start; /* Прижать строго к левому краю */
+            justify-self: start;
         }
         
-        /* Центр: Твой увеличенный логотип с кибер-волком */
         .center-logo {
             display: flex;
             align-items: center;
             justify-content: center;
         }
         .center-logo img {
-            width: 120px; /* Увеличено в 2 раза */
-            height: 120px; /* Увеличено в 2 раза */
+            width: 120px;
+            height: 120px;
             object-fit: cover;
-            border-radius: 50%; /* Идеальный круг */
-            border: 3px solid #38bdf8; /* Плотная неоновая рамка */
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.7); /* Мощное бирюзовое свечение волка */
+            border-radius: 50%;
+            border: 3px solid #38bdf8;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.7);
             display: block;
-            transition: transform 0.3s; /* Плавный эффект интерактива */
+            transition: transform 0.3s;
         }
-        /* Эффект легкого увеличения при наведении мышки на волка */
         .center-logo img:hover {
             transform: scale(1.05);
         }
 
-        /* Правая часть: Меню и Языки */
         nav {
             display: flex;
             align-items: center;
-            justify-self: end; /* Прижать строго к правому краю */
+            justify-self: end;
         }
         nav a {
             color: #cbd5e1;
@@ -85,7 +82,6 @@
             color: #38bdf8;
         }
         
-        /* Кнопки переключения языков */
         .lang-switcher {
             margin-left: 30px;
             display: flex;
@@ -103,77 +99,112 @@
             transition: color 0.3s;
         }
         .lang-btn.active {
-            color: #ec4899; /* Яркий розовый цвет для активного языка */
+            color: #ec4899;
+        }
+
+        /* --- МАГИЯ АДАПТИВНОСТИ ДЛЯ ТЕЛЕФОНОВ --- */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 290px; /* Увеличиваем отступ на смартфонах, так как шапка стала выше */
+            }
+            
+            header {
+                grid-template-columns: 1fr; /* Переключаем сетку в одну колонку */
+                gap: 10px;
+                padding: 15px 10px;
+            }
+            
+            .logo-text {
+                justify-self: center; /* Текст Fedor Cheb встает по центру */
+                margin-bottom: 5px;
+            }
+            
+            .center-logo img {
+                width: 90px; /* На телефоне делаем волка чуть компактнее, чтобы не перекрывать экран */
+                height: 90px;
+            }
+            
+            nav {
+                justify-self: center; /* Меню встает по центру */
+                flex-direction: column; /* Пункты меню выстраиваются друг под дружкой */
+                gap: 8px;
+                margin-top: 5px;
+                width: 100%;
+            }
+            
+            nav a {
+                margin-left: 0; /* Убираем боковые отступы ПК */
+                font-size: 16px;
+            }
+            
+            .lang-switcher {
+                margin-left: 0;
+                margin-top: 10px;
+                border-left: none; /* Убираем вертикальную палочку разделителя */
+                padding-left: 0;
+                justify-content: center; /* Центрируем языки */
+                width: 100%;
+            }
         }
 
         /* Главный баннер (Hero) */
         .hero {
-            height: calc(100vh - 150px);
+            height: auto;
+            min-height: calc(100vh - 180px);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
-            padding: 20px;
+            padding: 40px 20px;
         }
         .hero h1 {
-            font-size: 48px;
+            font-size: 36px;
             margin-bottom: 20px;
             background: linear-gradient(to right, #38bdf8, #ec4899);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        @media (min-width: 768px) {
+            .hero h1 { font-size: 48px; }
+        }
         .hero p {
-            font-size: 20px;
+            font-size: 18px;
             color: #94a3b8;
             max-width: 700px;
             margin-bottom: 30px;
         }
-        .btn {
-            background: linear-gradient(to right, #38bdf8, #3b82f6);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: inline-block;
-        }
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
-        }
 
         /* Общие стили секций */
         section {
-            padding: 100px 20px;
+            padding: 80px 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
         section h2 {
-            font-size: 36px;
-            margin-bottom: 40px;
+            font-size: 32px;
+            margin-bottom: 30px;
             text-align: center;
             color: #38bdf8;
         }
         .about-content {
             background-color: #1e293b;
-            padding: 40px;
+            padding: 30px;
             border-radius: 15px;
             border: 1px solid #334155;
-            font-size: 18px;
+            font-size: 16px;
         }
 
         /* Карточки возможностей */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
         }
         .card {
             background-color: #1e293b;
-            padding: 30px;
+            padding: 25px;
             border-radius: 15px;
             border: 1px solid #334155;
             cursor: pointer;
@@ -188,7 +219,7 @@
             color: #ec4899;
         }
 
-        /* Всплывающие окна (Модальные) */
+        /* Всплывающие окна */
         .modal {
             display: none; 
             position: fixed;
@@ -204,7 +235,7 @@
         }
         .modal-content {
             background-color: #1e293b;
-            padding: 40px;
+            padding: 30px;
             border-radius: 20px;
             max-width: 550px;
             width: 90%;
@@ -218,9 +249,9 @@
         }
         .close-btn {
             position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 30px;
+            top: 10px;
+            right: 15px;
+            font-size: 28px;
             color: #94a3b8;
             cursor: pointer;
         }
@@ -231,7 +262,7 @@
         /* Подвал */
         footer {
             text-align: center;
-            padding: 50px 20px;
+            padding: 40px 20px;
             background-color: #0f172a;
             border-top: 1px solid #1e293b;
             color: #64748b;
@@ -283,7 +314,7 @@
         <div class="grid">
             <div class="card" onclick="openModal('modal1')">
                 <h3 data-lang-key="card1_title">Разработка кода и ботов</h3>
-                <p data-lang-key="card1_desc">Проектирование логики приложений, creation скриптов автоматизации и удобных Telegram-интерфейсов. Нажмите для подробностей.</p>
+                <p data-lang-key="card1_desc">Проектирование логики приложений, создание скриптов автоматизации и удобных Telegram-интерфейсов. Нажмите для подробностей.</p>
             </div>
             <div class="card" onclick="openModal('modal2')">
                 <h3 data-lang-key="card2_title">Асинхронность и скорость</h3>
@@ -340,7 +371,7 @@
                 hero_title: "Automatisierung & Asynchroner Code", hero_desc: "Entwicklung moderner digitaler Lösungen, Skripte zur Prozessautomatisierung und leistungsstarker Telegram-Bots.", hero_btn: "Funktionen entdecken",
                 about_title: "Über mich", about_text: "Willkommen! Ich spezialisiere sich auf die Entwicklung von sauberem und fehlertolerantem Code zur Lösung praktischer Aufgaben. Mein Schwerpunkt liegt in der Erstellung smarter Automatisierungsskripte, die wiederkehrende Prozesse eliminieren, sowie in der Entwicklung interaktiver Telegram-Bots jeder Komplexität. Bei meiner Arbeit setze ich auf moderne Technologien und solide Architekturmuster, um maximale Stabilität und schnelle Ausführungszeiten zu gewährleisten.",
                 features_title: "Meine Funktionen", card1_title: "Code- & Bot-Entwicklung", card1_desc: "Konzeption von Anwendungslogik, Erstellung von Automatisierungsskripten und benutzerfreundlichen Telegram-Schnittstellen. Klicken für Details.", card2_title: "Asynchronität & Geschwindigkeit", card2_desc: "Optimierung von Programmen durch asynchrone Ansätze in Python und JavaScript für blitzschnelle Reaktionszeiten. Klicken für Details.",
-                modal1_title: "Entwicklung & Automatisierung", modal1_p1: "Ich erstelle maßgeschneiderte Softwarelösungen, um Ihre täglichen Abläufe zu optimieren. Dazu gehören Telegram-Bots mit komplexer Hintergrundlogik, die Integration von API-Diensten sowie automatisierte Datenverarbeitung.", modal1_p2: "Jedes Projekt wird mit einer klaren Struktur und verständlichen Dokumentation übergeben, sodass der Code zukunftssicher und leicht skalierbar bleibt.",
+                modal1_title: "Entwicklung & Automatisierung", modal1_p1: "Ich erstelle maßgeschneiderte Softwarelösungen, um Ihre täglichen Abläufe zu optimieren. Dazu gehören Telegram-Bots mit komplexer Hintergrundlogik, die Integration von API-Diensten sowie automatisierte Datenverarbeitung.", modal1_p2: "Jedes Projekt wird mit einer klaren Struktur und verständlichen Dokumentation übergeben, sodass der Code zukunftssicher und leicht賽卡拉(skalierbar) bleibt.",
                 modal2_title: "Asynchrone Programmierung", modal2_p1: "Die Nutzung asynchroner Programmierung in Python (asyncio) und JavaScript ermöglicht es der Anwendung, viele Operationen parallel auszuführen. Dies ist entscheidend für moderne Bots.", modal2_p2: "Dadurch blockieren Programme nicht beim Warten auf Server- oder Datenbankantworten, sondern verarbeiten neue Benutzeranfragen sofort weiter.",
                 footer_text: "© 2026 Fedor Cheb. Alle Rechte vorbehalten. Engineering & Programmierung.", footer_btn: "Fedor Veteran Hub besuchen"
             }
@@ -355,14 +386,12 @@
                 }
             });
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            // Делаем кликнутую кнопку активной
-            if(event) {
+            if(event && event.target) {
                 event.target.classList.add('active');
             }
             document.documentElement.lang = lang;
         }
 
-        /* --- Логика окон --- */
         function openModal(modalId) { document.getElementById(modalId).style.display = 'flex'; }
         function closeModal(modalId) { document.getElementById(modalId).style.display = 'none'; }
         window.onclick = function(event) { if (event.target.classList.contains('modal')) { event.target.style.display = 'none'; } }
